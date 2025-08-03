@@ -1,0 +1,47 @@
+/* index.css - App.cssとの競合を完全に排除 */
+:root {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  /* display: flex を削除 */
+  /* place-items: center を削除 */
+  /* App.cssに任せる */
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* デフォルトのボタンスタイルをリセット */
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

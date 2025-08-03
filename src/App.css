@@ -1,0 +1,590 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 40px 20px 20px 20px;
+    margin: 0;
+    width: 100%;
+    /* Flexboxレイアウトを明示的に指定 */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+}
+
+/* より強力な指定で確実に統一 */
+.container {
+    max-width: 1400px;
+    width: 100%;
+    margin: 20px auto 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    overflow: hidden;
+    /* 追加で確実にする */
+    position: relative;
+    display: block;
+}
+
+.header {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.header p {
+    opacity: 0.9;
+    font-size: 16px;
+}
+
+.tab-navigation {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    display: flex;
+    border-bottom: 2px solid #e0e0e0;
+    padding: 0 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.tab-button {
+    flex: 1;
+    padding: 18px 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #666;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: 500;
+    position: relative;
+    border-radius: 8px 8px 0 0;
+    margin: 0 5px;
+}
+
+.tab-button:hover:not(.active) {
+    background: rgba(255,255,255,0.7);
+    color: #2c3e50;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.tab-button.active {
+    background: white;
+    color: #2c3e50;
+    border-bottom: 3px solid #667eea;
+    font-weight: 600;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    transform: translateY(-1px);
+}
+
+.tab-button.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 8px 8px 0 0;
+}
+
+.tab-content {
+    display: none;
+    padding: 30px;
+    width: 100%;
+    box-sizing: border-box;
+    /* 追加で確実にする */
+    overflow: hidden;
+}
+
+.tab-content.active {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* main-content をより強力に指定 */
+.main-content {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 30px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    /* 追加で確実にする */
+    position: relative;
+    overflow: hidden;
+}
+
+.main-content > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+    /* 追加で確実にする */
+    position: relative;
+    min-height: 400px;
+}
+
+/* 設定エリアの強化 */
+.settings-left,
+.settings-right {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 設定グリッド - main-content内で2列レイアウト */
+.settings-container {
+    display: contents; /* gridの直接の子として扱う */
+}
+
+.settings-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.setting-group {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.setting-input {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* アップロードセクション */
+.upload-section {
+    border: 2px dashed #3498db;
+    border-radius: 15px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.upload-section:hover {
+    border-color: #667eea;
+    background: linear-gradient(135deg, #f0f4ff 0%, #f8f9ff 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.1);
+}
+
+.upload-section.dragover {
+    border-color: #667eea;
+    background: linear-gradient(135deg, #e8f2ff 0%, #f0f4ff 100%);
+    transform: scale(1.02);
+    box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2);
+}
+
+.upload-icon {
+    font-size: 64px;
+    color: #667eea;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 2px 4px rgba(102, 126, 234, 0.2));
+}
+
+.upload-text {
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.upload-subtext {
+    color: #888;
+    font-size: 16px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.file-input {
+    display: none;
+}
+
+.btn {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px 5px;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* 結果セクション */
+.results-section {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #e0e0e0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.results-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.file-item {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.file-name {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 8px;
+}
+
+.file-category {
+    background: #667eea;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.file-confidence {
+    color: #666;
+    font-size: 12px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 20px 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    transition: width 0.3s ease;
+}
+
+.status-text {
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* 設定ページ専用スタイル */
+.settings-title {
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.setting-note {
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #2c3e50;
+    margin: 0;
+    cursor: pointer;
+}
+
+.button-group {
+    text-align: center;
+    margin-top: 30px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-save {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+}
+
+.btn-test {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+.btn-clear {
+    background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+    font-size: 12px;
+    padding: 5px 15px;
+}
+
+.btn-export {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.log-container {
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    height: fit-content;
+}
+
+.log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.log-title {
+    font-weight: bold;
+    color: #2c3e50;
+    font-size: 14px;
+}
+
+.log-display {
+    background: #2c3e50;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    padding: 15px;
+    border-radius: 5px;
+    height: 200px;
+    overflow-y: auto;
+    white-space: pre-wrap;
+}
+
+.log-entry {
+    margin-bottom: 2px;
+}
+
+.log-separator {
+    color: #888;
+}
+
+.log-actions {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.setting-label {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 12px;
+    display: block;
+    font-size: 16px;
+}
+
+.setting-input:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.setting-input::placeholder {
+    color: #999;
+}
+
+/* レスポンシブ - 完全統一 */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        max-width: 100%;
+        margin: 0;
+        border-radius: 10px;
+        width: 100%;
+    }
+    
+    .main-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        min-height: auto;
+        width: 100%;
+    }
+    
+    .main-content > div {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .tab-content {
+        padding: 20px;
+        width: 100%;
+    }
+    
+    .header h1 {
+        font-size: 24px;
+    }
+    
+    .header {
+        padding: 20px;
+    }
+    
+    .upload-section {
+        padding: 30px 15px;
+        min-height: 250px;
+        width: 100%;
+    }
+    
+    .settings-grid {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+    
+    .setting-group {
+        width: 100%;
+    }
+    
+    .setting-input {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 5px;
+    }
+    
+    .container {
+        max-width: 100%;
+        margin: 0;
+        border-radius: 8px;
+        width: 100%;
+    }
+    
+    .main-content {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        min-height: auto;
+        width: 100%;
+    }
+    
+    .tab-content {
+        padding: 15px;
+        width: 100%;
+    }
+    
+    .header h1 {
+        font-size: 20px;
+    }
+    
+    .header {
+        padding: 15px;
+    }
+    
+    .upload-section {
+        padding: 20px 10px;
+        min-height: 200px;
+        width: 100%;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .settings-grid {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+    
+    .setting-group {
+        width: 100%;
+    }
+    
+    .setting-label {
+        font-size: 14px;
+    }
+    
+    .setting-input {
+        width: 100%;
+        padding: 10px 12px;
+    }
+}
